@@ -21,7 +21,6 @@ public class Boss_IdleBehaviour : Boss_Run
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("Attack2");
-        animator.ResetTrigger("Roll");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

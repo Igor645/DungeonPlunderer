@@ -13,7 +13,6 @@ public class Boss_Run : StateMachineBehaviour
     private int attackPicker;
     public float attackCooldown = 1;
     private float currentCooldown = 0;
-    public float playerTimeInRange = 0;
     private float minDistance = 4;
 
     private enum MovementState { Running }
@@ -48,29 +47,25 @@ public class Boss_Run : StateMachineBehaviour
             if (range > minDistance)
             {
                 animator.SetBool("Idle", false);
+                animator.SetBool("Run", true);
                 rb.MovePosition(newPos);
                 if(cooldownForRunningSound <= 0)
                 {
                     bossRun.Play();
                     cooldownForRunningSound = 0.4f;
                 }
-                Debug.Log("Move towards");
             }
             else
             {
                 animator.SetBool("Idle", true);
+                animator.SetBool("Run", false);
             }
 
             if (currentCooldown <= 0)
             {
-                if (playerTimeInRange >= 0.06)
+
+                if (Vector2.Distance(player.position, rb.position) <= attack1Range)
                 {
-                    animator.SetTrigger("Roll");
-                    playerTimeInRange = 0;
-                }
-                else if (Vector2.Distance(player.position, rb.position) <= attack1Range)
-                {
-                    playerTimeInRange += Time.fixedDeltaTime;
                     animator.SetTrigger("Attack1");
                 }
                 else if (Vector2.Distance(player.position, rb.position) > attack1Range && attackPicker == 2)

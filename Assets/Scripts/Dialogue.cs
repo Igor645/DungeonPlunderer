@@ -22,7 +22,7 @@ public class Dialogue : MonoBehaviour
         {
             boss = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>();
         }
-        cg = gameObject.GetComponent<CanvasGroup>();
+        cg = gameObject.GetComponents<CanvasGroup>()[0];
         cg.interactable = false;
         cg.alpha = 0;
         textComponent.text = string.Empty;

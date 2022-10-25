@@ -13,6 +13,7 @@ public class Boss_RollToSide : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetBool("Run", false);
         edgePointLeft = GameObject.FindGameObjectWithTag("BossEdgeLeft").transform;
         edgePointRight = GameObject.FindGameObjectWithTag("BossEdgeRight").transform;
         rb = animator.GetComponent<Rigidbody2D>();
@@ -37,6 +38,7 @@ public class Boss_RollToSide : StateMachineBehaviour
 
         if( rb.position.x - 1 < edgePointLeft.position.x || edgePointLeft.position.x < rb.position.x + 1 || edgePointRight.position.x == rb.position.x)
         {
+            //animator.SetBool("Roll", false);
             animator.SetTrigger("PointReached");
         }
     }

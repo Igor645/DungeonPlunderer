@@ -39,6 +39,7 @@ public class Boss_Fall : StateMachineBehaviour
     {
         animator.ResetTrigger("Fall");
         animator.ResetTrigger("Jump");
+        animator.SetBool("Roll", false);
         animator.ResetTrigger("PointReached");
     }
 
